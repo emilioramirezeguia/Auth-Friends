@@ -1,26 +1,30 @@
 import React from "react";
 import { useForm } from "../hooks/useForm";
 import axios from "axios";
+import Loader from "react-loader-spinner";
+
+const emptyLoginForm = {
+  username: "",
+  password: "",
+};
 
 function Login(props) {
-  const [form, handleChanges] = useForm();
+  const [form, setForm, handleChanges] = useForm(emptyLoginForm);
 
-  const handleLogin = (event) => {
+  const login = (event) => {
     event.preventDefault();
     axios
-      .post("http://localhost:5000/api/login", {
-        username: "Lambda",
-        password: "School",
-      })
+      .post("http://localhost:5000/api/login", form)
       .then((response) => {
         localStorage.setItem("token", response.data.payload);
         props.history.push("/friends");
       })
       .catch((error) => console.log(error));
+    setForm(emptyLoginForm);
   };
 
   return (
-    <form onSubmit={handleLogin}>
+    <form onSubmit={login}>
       <label htmlFor="username">Username: </label>
       <input
         id="username"

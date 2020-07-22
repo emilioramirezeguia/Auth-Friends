@@ -9,11 +9,14 @@ function App() {
   return (
     <Router>
       <div className="App">
-        <div>
+        <div className="links">
           <Link to="/login">Login</Link>
+          <Link to="/friends">Friends</Link>
         </div>
-        <h1>Friends</h1>
+        <h1>Sign in to view Friends</h1>
+        {/* {window.location.pathname === "/" ? <Login /> : ""} */}
         <Switch>
+          {/* <Route component={Login} /> */}
           <Route path="/login" component={Login} />
           <PrivateRoute exact path="/friends" component={Friends} />
         </Switch>

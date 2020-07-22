@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
+import AddFriends from "./AddFriends";
 
 function Friends() {
   const [friends, setFriends] = useState([]);
@@ -8,7 +9,6 @@ function Friends() {
     axiosWithAuth()
       .get("/api/friends")
       .then((response) => {
-        console.log(response.data);
         setFriends(response.data);
       })
       .catch((error) => console.log(error));
@@ -16,7 +16,8 @@ function Friends() {
 
   return (
     <div>
-      <h3>Friends Characters</h3>
+      <h3>Add a Friend</h3>
+      <AddFriends />
       {friends.map((friend) => {
         return (
           <div key={friend.id}>
