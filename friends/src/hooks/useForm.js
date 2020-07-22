@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 export const useForm = (initialForm) => {
-  const [isLoading, setIsLoading] = useState();
+  const [isLoading, setIsLoading] = useState(false);
   const [form, setForm] = useState(initialForm);
 
   const handleChanges = (event) => {
@@ -11,5 +11,5 @@ export const useForm = (initialForm) => {
     });
   };
 
-  return [form, setForm, handleChanges];
+  return [form, setForm, handleChanges, isLoading, setIsLoading];
 };

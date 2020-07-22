@@ -12,7 +12,7 @@ function Friends() {
         setFriends(response.data);
       })
       .catch((error) => console.log(error));
-  }, []);
+  }, [friends]);
 
   return (
     <div>
